@@ -339,6 +339,7 @@
   }
   a.sub-btn { text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
   .yt-btn { background: #ff5a5f; color: #fff; }
+  .ig-ico { width: 1.05em; height: 1.05em; flex: none; }
   .ig-btn { background: linear-gradient(45deg,#f9a03f,#e1306c 55%,#833ab4); color: #fff; }
   .yt-btn > span:first-child { font-size: 12px; }
   .sub-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--border); }
@@ -426,6 +427,7 @@
     .nav-links a { padding: 6px 8px; font-size: 13px; }
     .sub-btn { padding: 4px 10px; font-size: 13px; }
     .yt-btn .lbl, .ig-btn .lbl { display: none; }
+    .yt-btn, .ig-btn { width: 34px; height: 34px; padding: 0; justify-content: center; }
     .sub p, .newsletter p { font-size: 14px; }
     .sub-inner { padding-left: 16px; padding-right: 16px; }
     .sub p { font-size: 13px; }
@@ -455,7 +457,7 @@
       <a href="#courses">課程評價</a>
       <a href="#online">線上課程</a>
     </div>
-    <a class="sub-btn ig-btn" href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener" aria-label="追蹤 Instagram"><span aria-hidden="true">✨</span><span class="lbl">訂閱 IG</span></a>
+    <a class="sub-btn ig-btn" href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener" aria-label="追蹤 Instagram"><svg class="ig-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg><span class="lbl">訂閱 IG</span></a>
     <a class="sub-btn yt-btn" href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99?sub_confirmation=1" target="_blank" rel="noopener" aria-label="訂閱 YouTube 頻道"><span aria-hidden="true">▶</span><span class="lbl">訂閱 YouTube</span></a>
     <button class="sub-btn" type="button" data-open-sub>💎 訂閱電子報</button>
     <button class="theme-btn" id="themeBtn" aria-label="切換深淺色">🌙</button>
@@ -488,7 +490,7 @@
     <div class="cta">
       <a class="btn primary" href="#courses">⭐ 看學生怎麼說</a>
       <a class="btn" href="#online" style="background:#2f7ff0;color:#fff">💻 線上課程</a>
-      <a class="btn" href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener" style="background:linear-gradient(45deg,#f9a03f,#e1306c 55%,#833ab4);color:#fff">✨ 訂閱 IG</a>
+      <a class="btn" href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener" style="background:linear-gradient(45deg,#f9a03f,#e1306c 55%,#833ab4);color:#fff"><svg class="ig-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>訂閱 IG</a>
       <a class="btn" href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99?sub_confirmation=1" target="_blank" rel="noopener" style="background:#ff5a5f;color:#fff">▶ 訂閱 YouTube</a>
       <button class="btn" type="button" data-open-sub style="font-family:inherit;cursor:pointer;color:inherit">💎 訂閱電子報</button>
     </div>
