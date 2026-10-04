@@ -51,7 +51,7 @@
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
   body {
     margin: 0;
     font-family: "Noto Sans TC", system-ui, sans-serif;
@@ -152,7 +152,9 @@
   .stat {
     background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius);
     padding: 18px; box-shadow: var(--shadow); text-align: center;
+    display: block; text-decoration: none; transition: transform .15s, box-shadow .15s;
   }
+  .stat:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
   .stat b { display: block; font-size: 30px; font-weight: 900; line-height: 1.2; }
   .stat span { font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
   .stat:nth-child(1) b { color: #e2677c; }
@@ -395,6 +397,7 @@
     .sub p, .newsletter p { font-size: 14px; }
     .sub-inner { padding-left: 16px; padding-right: 16px; }
     .sub p { font-size: 13px; }
+    html { scroll-padding-top: 104px; }
     .logo span { display: none; }
     nav .wrap { flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 4px; row-gap: 2px; }
     .logo { margin-right: auto; }
@@ -442,6 +445,7 @@
         <a class="btn primary" href="#courses">⭐ 看學生怎麼說</a>
         <a class="btn" href="#online">💻 線上課程</a>
         <button class="btn" type="button" data-open-sub style="font:inherit;font-weight:700;cursor:pointer;color:inherit">💎 訂閱電子報</button>
+        <a class="btn" href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99?sub_confirmation=1" target="_blank" rel="noopener" style="background:#ff5a5f;color:#fff">▶ 訂閱 YouTube</a>
       </div>
     </div>
 
@@ -455,10 +459,10 @@
 
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><b>5.0</b><span>統計專題班 學生評分</span></div>
-      <div class="stat"><b>5.0</b><span>物件導向專題班 學生評分</span></div>
-      <div class="stat"><b>3</b><span>Hahow 程式課程</span></div>
-      <div class="stat"><b>3</b><span>國際研究機構經歷</span></div>
+      <a class="stat" href="#courses" data-course="stats"><b>5.0</b><span>統計專題班 學生評分</span></a>
+      <a class="stat" href="#courses" data-course="oop"><b>5.0</b><span>物件導向專題班 學生評分</span></a>
+      <a class="stat" href="#online"><b>3</b><span>Hahow 程式課程</span></a>
+      <a class="stat" href="#about"><b>3</b><span>國際研究機構經歷</span></a>
     </div>
   </div>
 </header>
@@ -743,6 +747,7 @@ function renderCourse(key) {
   document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.course === key));
 }
 document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => renderCourse(t.dataset.course)));
+document.querySelectorAll(".stat[data-course]").forEach(a => a.addEventListener("click", () => renderCourse(a.dataset.course)));
 renderCourse("stats");
 
 // typing terminal
