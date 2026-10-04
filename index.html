@@ -313,6 +313,9 @@
     padding: 6px 14px; border-radius: 999px; border: 2px solid var(--border); background: var(--pink);
     box-shadow: 2px 2px 0 var(--border); flex: none;
   }
+  a.sub-btn { text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .yt-btn { background: #ff5a5f; color: #fff; }
+  .yt-btn > span:first-child { font-size: 12px; }
   .sub-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--border); }
 
   /* ---------- subscribe dialog ---------- */
@@ -388,6 +391,7 @@
   @media (max-width: 520px) {
     .nav-links a { padding: 6px 8px; font-size: 13px; }
     .sub-btn { padding: 4px 10px; font-size: 13px; }
+    .yt-btn .lbl { display: none; }
     .sub p, .newsletter p { font-size: 14px; }
     .sub-inner { padding-left: 16px; padding-right: 16px; }
     .sub p { font-size: 13px; }
@@ -408,11 +412,12 @@
   <div class="wrap">
     <a class="logo" href="#top"><img src="assets/avatar.jpg" alt=""><span>麒仙老師</span></a>
     <div class="nav-links">
-      <a href="#honors">榮譽</a>
+      <a href="#honors">榮譽與服務</a>
       <a href="#about">學經歷</a>
       <a href="#courses">課程評價</a>
       <a href="#online">線上課程</a>
     </div>
+    <a class="sub-btn yt-btn" href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99?sub_confirmation=1" target="_blank" rel="noopener" aria-label="訂閱 YouTube 頻道"><span aria-hidden="true">▶</span><span class="lbl">訂閱 YouTube</span></a>
     <button class="sub-btn" type="button" data-open-sub>📬 訂閱</button>
     <button class="theme-btn" id="themeBtn" aria-label="切換深淺色">🌙</button>
   </div>
