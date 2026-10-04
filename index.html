@@ -417,6 +417,16 @@
   .award h3 { margin: 0; font-size: 22px; }
   .award p { margin: 4px 0 0; }
   .award .btn { background: #fff; color: #2b3245; border-color: #2b3245; box-shadow: 3px 3px 0 #2b3245; }
+  .ta-cta { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .ta-cta .btn {
+    font-family: inherit; cursor: pointer; font-size: 19px; padding: 14px 26px; gap: 10px;
+    background: #2b3a5c; color: #fff; box-shadow: 4px 4px 0 #2b3245; animation: nudge 2.4s ease-in-out infinite;
+  }
+  .ta-cta .btn:hover { background: #3a4d78; animation: none; }
+  .ta-cta .arrow { display: inline-block; transition: transform .2s; }
+  .ta-cta .btn:hover .arrow { transform: translateX(4px); }
+  .ta-cta .hint { font-size: 14px; font-weight: 700; color: #5e6680; }
+  @keyframes nudge { 0%, 70%, 100% { transform: none; } 80% { transform: translateY(-4px); } 90% { transform: translateY(0); } }
 
   /* ---------- footer ---------- */
   footer { padding: 40px 0 56px; text-align: center; color: var(--ink-soft); font-size: 14px; }
@@ -639,6 +649,23 @@
     </div>
   </section>
 
+  <section id="award">
+    <div class="wrap">
+      <div class="award reveal">
+        <div class="medal">🏅</div>
+        <div>
+          <span class="mono" style="font-size:13px;font-weight:600">achievement_unlocked = True</span>
+          <h3>全國夏季學院《計算機程式設計》傑出教學助理獎</h3>
+          <p>「麒仙是我教授台大通識及全國夏季學院《計算機程式設計》約三十餘年來，最優秀的助教。」<br><small>—— 鄭士康，臺大名譽教授 · 學生評分 4.89 / 5.0</small></p>
+        </div>
+        <div class="ta-cta">
+          <button class="btn" type="button" id="openTA">💬 看 23 則學生回饋<span class="arrow" aria-hidden="true">→</span></button>
+          <span class="hint">👆 點我看看學生怎麼說</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="newsletter">
     <div class="wrap">
       <div class="newsletter reveal">
@@ -655,19 +682,6 @@
     </div>
   </section>
 
-  <section id="award">
-    <div class="wrap">
-      <div class="award reveal">
-        <div class="medal">🏅</div>
-        <div>
-          <span class="mono" style="font-size:13px;font-weight:600">achievement_unlocked = True</span>
-          <h3>全國夏季學院《計算機程式設計》傑出教學助理獎</h3>
-          <p>「麒仙是我教授台大通識及全國夏季學院《計算機程式設計》約三十餘年來，最優秀的助教。」<br><small>—— 鄭士康，臺大名譽教授 · 學生評分 4.89 / 5.0</small></p>
-        </div>
-        <button class="btn" type="button" id="openTA" style="font-family:inherit;cursor:pointer;color:inherit">📄 學生文字回饋</button>
-      </div>
-    </div>
-  </section>
   <section id="honors">
     <div class="wrap">
       <div class="sec-head reveal"><h2>榮譽與服務</h2><span class="mono">// achievements.sort(by="year")</span></div>
