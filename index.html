@@ -365,6 +365,12 @@
   .ta-head p { margin: 0; font-size: 14px; color: #5e6680; }
   .ta-head .sub-close { position: static; flex: none; }
   .ta-body { overflow-y: auto; padding: 30px 24px 8px; }
+  .ta-quote {
+    margin: 0 0 30px; padding: 20px 24px; border: 2px solid var(--border); border-radius: 20px;
+    background: linear-gradient(135deg, #fff4cc, #ffe3e8); color: #2b3245; box-shadow: 4px 4px 0 var(--border);
+  }
+  .ta-quote blockquote { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.7; }
+  .ta-quote figcaption { margin-top: 8px; font-size: 14px; color: #5e6680; }
   .ta-foot { padding: 12px 24px 16px; border-top: 2px dashed color-mix(in srgb, var(--ink) 15%, transparent); text-align: center; font-size: 14px; font-weight: 700; }
   .ta-foot a { color: #7a62d9; }
   .review blockquote { white-space: pre-line; }
@@ -713,7 +719,13 @@
     </div>
     <button class="sub-close" type="button" aria-label="關閉" data-close-ta>✕</button>
   </div>
-  <div class="ta-body"><div class="reviews" id="taReviews"></div></div>
+  <div class="ta-body">
+    <figure class="ta-quote">
+      <blockquote>「麒仙是我教授台大通識及全國夏季學院《計算機程式設計》約三十餘年來，最優秀的助教。」</blockquote>
+      <figcaption>—— 鄭士康，臺大名譽教授</figcaption>
+    </figure>
+    <div class="reviews" id="taReviews"></div>
+  </div>
   <div class="ta-foot"><a href="https://drive.google.com/file/d/1xaIBW1-9n0sJkmzZfTYbbCt0eigbpZN9/view" target="_blank" rel="noopener">📄 查看原始檔案</a></div>
 </dialog>
 
