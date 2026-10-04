@@ -257,6 +257,37 @@
   .review:nth-child(3n+2)::before { color: var(--lilac); }
   .review:nth-child(3n)::before { color: var(--mint); }
 
+  /* ---------- online & social ---------- */
+  .online-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .ocard {
+    display: flex; flex-direction: column; gap: 10px; text-decoration: none;
+    background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius);
+    padding: 22px; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s;
+  }
+  .ocard:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
+  .ocard .badge { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--mint-soft); }
+  .ocard .emoji { font-size: 34px; line-height: 1; }
+  .ocard h3 { margin: 0; font-size: 20px; }
+  .ocard .go { margin-top: auto; font-size: 14px; font-weight: 700; color: #7a62d9; }
+  .ocard:nth-child(2) .badge { background: var(--pink-soft); }
+  .ocard:nth-child(3) .badge { background: var(--lilac-soft); }
+
+  .social { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .scard {
+    display: flex; align-items: center; gap: 16px; text-decoration: none;
+    border: 2px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow);
+    color: #2b3245; transition: transform .15s, box-shadow .15s;
+  }
+  .scard:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
+  .scard.ig { background: linear-gradient(135deg, #ffe3e8, #ffd9b8); }
+  .scard.ss { background: linear-gradient(135deg, #ffe6cf, #ece6ff); }
+  .scard svg { width: 44px; height: 44px; flex: none; }
+  .scard b { display: block; font-size: 17px; }
+  .scard span { font-size: 14px; }
+  .footer-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; }
+  .footer-links a { font-weight: 700; text-decoration: none; }
+  .footer-links a:hover { text-decoration: underline; }
+
   /* ---------- award ---------- */
   .award {
     display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
@@ -288,6 +319,8 @@
     .float.f1 { left: -14%; } .float.f2 { right: -16%; } .float.f3 { left: -10%; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .grid-2 { grid-template-columns: 1fr; }
+    .online-grid { grid-template-columns: 1fr; }
+    .social { grid-template-columns: 1fr; }
     .award { grid-template-columns: 1fr; text-align: center; justify-items: center; }
   }
   @media (max-width: 520px) {
@@ -311,6 +344,7 @@
     <div class="nav-links">
       <a href="#about">學經歷</a>
       <a href="#courses">課程評價</a>
+      <a href="#online">線上課程</a>
       <a href="#award">獲獎</a>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="切換深淺色">🌙</button>
@@ -331,7 +365,7 @@
 
       <div class="cta">
         <a class="btn primary" href="#courses">⭐ 看學生怎麼說</a>
-        <a class="btn" href="#about">🎓 學經歷</a>
+        <a class="btn" href="#online">💻 線上課程</a>
       </div>
     </div>
 
@@ -416,6 +450,44 @@
     </div>
   </section>
 
+  <section id="online">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>線上課程與社群</h2><span class="mono">// learn_anytime()</span></div>
+
+      <div class="online-grid">
+        <a class="ocard reveal" href="https://hahow.in/cr/ai-java-python" target="_blank" rel="noopener">
+          <span class="badge">Hahow 線上課程</span>
+          <span class="emoji">🤖</span>
+          <h3>AI × Java × Python</h3>
+          <span class="go">前往課程 →</span>
+        </a>
+        <a class="ocard reveal" href="https://hahow.in/cr/python-statistics" target="_blank" rel="noopener">
+          <span class="badge">Hahow 線上課程</span>
+          <span class="emoji">📊</span>
+          <h3>Python × 統計</h3>
+          <span class="go">前往課程 →</span>
+        </a>
+        <a class="ocard reveal" href="https://hahow.in/cr/rust-python" target="_blank" rel="noopener">
+          <span class="badge">Hahow 線上課程</span>
+          <span class="emoji">🦀</span>
+          <h3>Rust × Python</h3>
+          <span class="go">前往課程 →</span>
+        </a>
+      </div>
+
+      <div class="social">
+        <a class="scard ig reveal" href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2b3245" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#2b3245"/></svg>
+          <div><b>Instagram</b><span class="mono">@ai.help.365</span></div>
+        </a>
+        <a class="scard ss reveal" href="https://substack.com/@aihelp365" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="#2b3245" aria-hidden="true"><path d="M5 3h14v2.4H5zM5 7.3h14v2.4H5zM5 11.6h14V21l-7-3.9L5 21z"/></svg>
+          <div><b>Substack</b><span class="mono">@aihelp365</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="award">
     <div class="wrap">
       <div class="award reveal">
@@ -434,6 +506,10 @@
 <footer>
   <div class="wrap">
     <span class="mono">print("Thanks for visiting! 💖")</span>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://substack.com/@aihelp365" target="_blank" rel="noopener">Substack</a>
+    </div>
     © <span id="year"></span> 麒仙老師 Salima
   </div>
 </footer>
