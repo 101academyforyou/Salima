@@ -349,6 +349,25 @@
   .sub-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--border); }
 
   /* ---------- subscribe dialog ---------- */
+  dialog.ta-dlg {
+    width: min(1000px, calc(100% - 32px)); max-height: 88vh; padding: 0; border: 3px solid var(--border); border-radius: 28px;
+    background: var(--bg); color: var(--ink); box-shadow: 8px 8px 0 var(--border);
+    display: none; flex-direction: column; overflow: hidden;
+  }
+  dialog.ta-dlg[open] { display: flex; animation: pop .25s ease-out; }
+  dialog.ta-dlg::backdrop { background: rgba(23, 26, 38, .45); backdrop-filter: blur(3px); }
+  .ta-head {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    padding: 22px 24px 16px; background: linear-gradient(135deg, #fff4cc, #ffe3e8 60%, #ece6ff); color: #2b3245;
+    border-bottom: 2px solid var(--border);
+  }
+  .ta-head h3 { margin: 4px 0 2px; font-size: 22px; font-weight: 900; }
+  .ta-head p { margin: 0; font-size: 14px; color: #5e6680; }
+  .ta-head .sub-close { position: static; flex: none; }
+  .ta-body { overflow-y: auto; padding: 30px 24px 8px; }
+  .ta-foot { padding: 12px 24px 16px; border-top: 2px dashed color-mix(in srgb, var(--ink) 15%, transparent); text-align: center; font-size: 14px; font-weight: 700; }
+  .ta-foot a { color: #7a62d9; }
+  .review blockquote { white-space: pre-line; }
   dialog.sub {
     width: min(520px, calc(100% - 32px)); padding: 0; border: 3px solid var(--border); border-radius: 28px;
     background: var(--surface); color: var(--ink); box-shadow: 8px 8px 0 var(--border); overflow: visible;
@@ -641,7 +660,7 @@
           <h3>全國夏季學院《計算機程式設計》傑出教學助理獎</h3>
           <p>「麒仙是我教授台大通識及全國夏季學院《計算機程式設計》約三十餘年來，最優秀的助教。」<br><small>—— 鄭士康，臺大名譽教授 · 學生評分 4.89 / 5.0</small></p>
         </div>
-        <a class="btn" href="https://drive.google.com/file/d/1xaIBW1-9n0sJkmzZfTYbbCt0eigbpZN9/view" target="_blank" rel="noopener">📄 學生文字回饋</a>
+        <button class="btn" type="button" id="openTA" style="font-family:inherit;cursor:pointer;color:inherit">📄 學生文字回饋</button>
       </div>
     </div>
   </section>
@@ -684,6 +703,19 @@
     </div>
   </section>
 </main>
+
+<dialog class="ta-dlg" id="taDialog" aria-labelledby="taTitle">
+  <div class="ta-head">
+    <div>
+      <span class="mono" style="font-size:13px;font-weight:600">feedback.length = <span id="taCount"></span></span>
+      <h3 id="taTitle">學生問卷文字意見</h3>
+      <p>全國夏季學院《計算機程式設計》2022 · 傑出教學助理獎 · 學生評分 4.89 / 5.0</p>
+    </div>
+    <button class="sub-close" type="button" aria-label="關閉" data-close-ta>✕</button>
+  </div>
+  <div class="ta-body"><div class="reviews" id="taReviews"></div></div>
+  <div class="ta-foot"><a href="https://drive.google.com/file/d/1xaIBW1-9n0sJkmzZfTYbbCt0eigbpZN9/view" target="_blank" rel="noopener">📄 查看原始檔案</a></div>
+</dialog>
 
 <dialog class="sub" id="subDialog" aria-labelledby="subTitle">
   <div class="sub-inner">
@@ -770,18 +802,13 @@ const COURSES = {
 
 const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-function renderCourse(key) {
-  const c = COURSES[key];
-  document.getElementById("courseTitle").textContent = c.title;
-  document.getElementById("courseDesc").textContent = c.desc;
-  document.getElementById("courseCount").textContent = c.reviews.length + " 則學生回饋";
-  const box = document.getElementById("reviews");
-  box.innerHTML = c.reviews.map(([text, motive]) => {
+function fillReviews(box, list, label) {
+  box.innerHTML = list.map(([text, note]) => {
     const long = text.length > 140;
     return `<figure class="review">
       <blockquote${long ? ' class="clamped"' : ""}>${esc(text)}</blockquote>
       ${long ? '<button class="more">展開全文 ▾</button>' : ""}
-      ${motive ? `<figcaption class="motive"><span class="mono">學習動機 →</span> ${esc(motive)}</figcaption>` : ""}
+      ${note ? `<figcaption class="motive"><span class="mono">${label} →</span> ${esc(note)}</figcaption>` : ""}
     </figure>`;
   }).join("");
   box.querySelectorAll(".more").forEach(btn => btn.addEventListener("click", () => {
@@ -789,11 +816,58 @@ function renderCourse(key) {
     const open = q.classList.toggle("clamped");
     btn.textContent = open ? "展開全文 ▾" : "收合 ▴";
   }));
+}
+
+function renderCourse(key) {
+  const c = COURSES[key];
+  document.getElementById("courseTitle").textContent = c.title;
+  document.getElementById("courseDesc").textContent = c.desc;
+  document.getElementById("courseCount").textContent = c.reviews.length + " 則學生回饋";
+  const box = document.getElementById("reviews");
+  fillReviews(box, c.reviews, "學習動機");
   document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", t.dataset.course === key));
 }
 document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => renderCourse(t.dataset.course)));
 document.querySelectorAll(".stat[data-course]").forEach(a => a.addEventListener("click", () => renderCourse(a.dataset.course)));
 renderCourse("stats");
+
+// TA feedback dialog (全國夏季學院 2022 問卷文字意見)
+const TA_FEEDBACK = [
+  ["助教超認真，感謝尼", "2022-08-13"],
+  ["非常認真教學與協助同學的助教！謝謝妳為同學協助這麼多事，受益良多，感謝！", "2022-08-13"],
+  ["助教人超好的，很樂意幫助我們解決問題，也很樂意在課外時間約 office hour。謝謝助教在這堂課上的幫助。", "2022-08-13"],
+  ["助教很認真的教導我們，對於教學的筆記、重點都整理得非常有條理，對於學生的問題都很細心地回覆，也很願意投入時間在解答學生問題。講題很清楚，雖然第一次聽會覺得有點快，身為邏輯能力沒有很好的我可能不會馬上就聽懂，但是因為我會錄影下來重複觀看，所以我覺得助教講解的都非常淺顯易懂，也會用許多不同情境講同一個觀念。助教真的超棒的，有點後悔沒有空出完整的時間學習這堂課的東西，要不然就可以跟助教學更多東西了！", "2022-08-13"],
+  ["助教除了在上課時的習題讓我們有非常充分的練習與清楚仔細地講解觀念及題目內容，也在課後與其餘沒有上課的時間給予 office hour 讓我們可以將所有問題馬上解決，此外若是傳 email 詢問問題，助教也非常快速的清楚回答我們的問題，非常感謝助教這段時間的幫助以及用心，辛苦了！", "2022-08-13"],
+  ["TA 非常的用心，上課聽不懂的會一直講到聽懂為止，若是課餘時間有問題也可以和 TA 約上課外的時間一起討論問題。", "2022-08-13"],
+  ["很讚的助教", "2022-08-13"],
+  ["TA 每個禮拜都有開 Google Meets 好幾次，在非上課時間讓同學提問問題，我從來都沒有遇過提供的學習資源這麼多的助教。", "2022-08-13"],
+  ["助教人超好，不厭其煩的回答我們的問題，讓我學習上減少了許多困難！", "2022-08-13"],
+  ["謝謝超用心的麒仙助教！不僅在學生有困難的時候為我們解惑，還會主動提供協助～\n建議：前 1、2 堂助教課進度超前太多，對沒學過程式的同學會有點吃力，可以簡單一點～", "2022-08-13"],
+  ["第一次接觸程式設計，很多觀念不像有些學生有基礎，但助教總是鼓勵我們問問題，也跟我們約很多課餘時間輔導不理解的部分，問到會為止，對於表現好的部分也會大力讚賞，讓我對於這門課有了很大的信心，很開心我第一次學程式設計遇到那麼好的助教！希望未來也能夠帶著麒仙助教的精神學習不同領域的知識！非常謝謝！", "2022-08-13"],
+  ["助教真的超級認真，花在我們身上的時間非常多，對我學習帶來的幫助更是非常非常大，謝謝助教、也希望助教要注意身體健康，適時放鬆不要拚過頭了。", "2022-08-13"],
+  ["超好", "2022-08-13"],
+  ["真的很少碰到那麼有耐心和熱忱的助教，希望之後有問題也可以繼續詢問助教", "2022-08-14"],
+  ["助教充滿熱誠，態度負責認真！", "2022-08-15"],
+  ["TA 非常有耐心幫助我解決問題，超過 100 分", "2022-08-16"],
+  ["助教真的很用心，講解非常清楚，課堂上超過一半的時間都是他在講解，有時候教授講我聽不太懂，助教講完就豁然開朗，而且助教還很樂意在 office hour 回答問題，態度也非常親切，讓人想一直上他的課", "2022-08-17"],
+  ["助教很負責任很認真教學～～", "2022-08-18"],
+  ["真的很認真在教學，也很用心在回答學生的問題", "2022-08-19"],
+  ["助教很用心在上課，也願意花課餘的時間與學生討論，是個教育界缺一不可的老師。", "2022-08-19"],
+  ["我上這門課有一部分的動力來源是來自課程 TA，第一次遇到這麼具有教學熱忱，又認真負責的助教，常常覺得助教比我們任何一個學生都還要認真，也看見了她常常為了要讓線上教學的效果更好，很努力的想各種方法。我覺得這件事很難能可貴，也覺得自己很幸運可以遇到這樣的助教，在這門我覺得壓力指數最大的課程，助教的存在大大地緩解了我的焦慮。而我聽說助教以後想要走教學的路線，希望她以後的路都順利。", "2022-08-21"],
+  ["助教很認真", "2022-08-26"],
+  ["助教很用心且認真～", "2022-09-06"]
+];
+const taDialog = document.getElementById("taDialog");
+document.getElementById("openTA").addEventListener("click", () => {
+  const box = document.getElementById("taReviews");
+  if (!box.childElementCount) {
+    fillReviews(box, TA_FEEDBACK, "填寫日期");
+    document.getElementById("taCount").textContent = TA_FEEDBACK.length;
+  }
+  taDialog.showModal();
+});
+document.querySelectorAll("[data-close-ta]").forEach(b => b.addEventListener("click", () => taDialog.close()));
+taDialog.addEventListener("click", e => { if (e.target === taDialog) taDialog.close(); });
 
 // typing terminal
 const lines = [
