@@ -297,6 +297,13 @@
   .scard svg, .scard img { width: 44px; height: 44px; flex: none; }
   .scard b { display: block; font-size: 17px; }
   .scard span { font-size: 14px; }
+  footer .mail {
+    display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center;
+    margin: 6px 0 14px; padding: 8px 18px; border-radius: 18px; border: 2px solid var(--border);
+    background: var(--surface); box-shadow: 3px 3px 0 var(--border); color: var(--ink); font-weight: 700; text-decoration: none;
+  }
+  footer .mail .mono { display: inline; margin: 0; font-weight: 600; }
+  footer .mail:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--border); }
   .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-bottom: 8px; }
   .footer-links a { font-weight: 700; text-decoration: none; }
   .footer-links a:hover { text-decoration: underline; }
@@ -672,6 +679,7 @@
 <footer>
   <div class="wrap">
     <span class="mono">print("Thanks for visiting! 💖")</span>
+    <a class="mail" href="mailto:salimachchang@gmail.com">📧 聯絡信箱：<span class="mono">salimachchang@gmail.com</span></a>
     <div class="footer-links">
       <a href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://substack.com/@aihelp365" target="_blank" rel="noopener">Substack</a>
