@@ -291,6 +291,21 @@
   .footer-links a { font-weight: 700; text-decoration: none; }
   .footer-links a:hover { text-decoration: underline; }
 
+  /* ---------- newsletter ---------- */
+  .newsletter {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
+    background: linear-gradient(135deg, var(--lilac-soft), var(--mint-soft));
+    border: 3px solid var(--border); border-radius: 28px; padding: 32px; box-shadow: 8px 8px 0 var(--border);
+  }
+  .newsletter h3 { margin: 6px 0 8px; font-size: 26px; font-weight: 900; }
+  .newsletter p { margin: 0; color: var(--ink-soft); }
+  .nl-embed {
+    background: #fff; border: 2px solid var(--border); border-radius: 20px; overflow: hidden;
+    box-shadow: 4px 4px 0 var(--border);
+  }
+  .nl-embed iframe { display: block; width: 100%; height: 320px; border: 0; background: #fff; }
+  .nl-alt { margin-top: 10px; font-size: 13px; color: var(--ink-soft); text-align: center; }
+
   /* ---------- award ---------- */
   .award {
     display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
@@ -324,6 +339,7 @@
     .grid-2 { grid-template-columns: 1fr; }
     .online-grid { grid-template-columns: 1fr; }
     .social { grid-template-columns: 1fr; }
+    .newsletter { grid-template-columns: 1fr; padding: 22px; }
     .award { grid-template-columns: 1fr; text-align: center; justify-items: center; }
   }
   @media (max-width: 520px) {
@@ -348,6 +364,7 @@
       <a href="#about">學經歷</a>
       <a href="#courses">課程評價</a>
       <a href="#online">線上課程</a>
+      <a href="#newsletter">電子報</a>
       <a href="#award">獲獎</a>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="切換深淺色">🌙</button>
@@ -500,6 +517,24 @@
           <img src="assets/watchlaterhub.svg" alt="" width="44" height="44">
           <div><b>WatchLaterHub</b><span>Chrome 擴充功能</span></div>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter">
+    <div class="wrap">
+      <div class="newsletter reveal">
+        <div>
+          <span class="mono" style="font-size:13px;font-weight:600">subscribe(email) → inbox 📬</span>
+          <h3>訂閱電子報</h3>
+          <p>輸入 Email，就能收到最新文章與課程消息。</p>
+        </div>
+        <div>
+          <div class="nl-embed">
+            <iframe src="https://aihelp365.substack.com/embed" title="訂閱 Substack 電子報" loading="lazy" scrolling="no"></iframe>
+          </div>
+          <div class="nl-alt">由 Substack 提供 · 也可以 <a href="https://substack.com/@aihelp365" target="_blank" rel="noopener">前往 Substack 頁面</a></div>
+        </div>
       </div>
     </div>
   </section>
