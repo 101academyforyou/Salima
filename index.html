@@ -101,7 +101,7 @@
   }
   .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: #3cc59b; animation: pulse 1.6s infinite; }
   @keyframes pulse { 50% { opacity: .3; } }
-  h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.15; margin: 18px 0 10px; font-weight: 900; letter-spacing: .02em; }
+  h1 { font-size: clamp(28px, 4.4vw, 52px); line-height: 1.15; margin: 18px 0 10px; font-weight: 900; letter-spacing: .02em; }
   h1 .en { display: block; font-size: .42em; color: var(--ink-soft); font-weight: 600; letter-spacing: .08em; margin-top: 6px; }
   .hl { background: linear-gradient(transparent 60%, var(--pink-soft) 60%); padding: 0 4px; white-space: nowrap; }
   .lead { font-size: 18px; color: var(--ink-soft); max-width: 34em; }
@@ -394,7 +394,10 @@
     .reveal { opacity: 1; transform: none; }
   }
 
+  @media (max-width: 1120px) { .float.f2 { right: -3%; } }
+  @media (max-width: 350px) { h1 { font-size: 24px !important; } .nb { white-space: normal; } }
   @media (max-width: 860px) {
+    h1 { font-size: clamp(28px, 7vw, 44px); }
     .hero-main { grid-template-columns: 1fr; }
     .avatar-box { order: -1; width: min(280px, 78%); }
     .float.f1 { left: -14%; } .float.f2 { right: -16%; } .float.f3 { left: -10%; }
@@ -459,7 +462,7 @@
 
       <div class="cta">
         <a class="btn primary" href="#courses">⭐ 看學生怎麼說</a>
-        <a class="btn" href="#online" style="background:#c4e3fa;color:#2b3245">💻 線上課程</a>
+        <a class="btn" href="#online" style="background:#2b3a5c;color:#fff">💻 線上課程</a>
         <a class="btn" href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99?sub_confirmation=1" target="_blank" rel="noopener" style="background:#ff5a5f;color:#fff">▶ 訂閱 YouTube</a>
         <button class="btn" type="button" data-open-sub style="font-family:inherit;cursor:pointer;color:inherit">💎 訂閱電子報</button>
       </div>
@@ -469,7 +472,7 @@
       <div class="avatar-card"><img src="assets/avatar.jpg" alt="Salima 老師的可愛插畫頭像"></div>
       <div class="float f1">📊 統計</div>
       <div class="float f2">🐍 Python</div>
-      <div class="float f3">🤖 AI</div>
+      <div class="float f3">🔮 AI</div>
     </div>
   </div>
 
