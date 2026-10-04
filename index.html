@@ -152,30 +152,23 @@
   /* ---------- stats ---------- */
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 28px 0 8px; }
   .stat {
-    --c: #e2677c; --t: #ffe3e8;
+    --c: #e2677c;
     position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px;
-    background: linear-gradient(160deg, var(--t) 0%, var(--surface) 65%);
+    background: var(--surface);
     border: 2px solid var(--border); border-radius: var(--radius);
-    padding: 20px 12px 18px; box-shadow: var(--shadow); text-align: center;
+    padding: 24px 12px 22px; box-shadow: var(--shadow); text-align: center;
     text-decoration: none; color: var(--ink); transition: transform .15s, box-shadow .15s;
   }
   .stat:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
-  .stat .ico {
-    width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; font-size: 20px;
-    background: var(--t); border: 2px solid var(--border); margin-bottom: 6px;
-  }
-  .stat b { font-size: 38px; font-weight: 900; line-height: 1.1; color: var(--c); letter-spacing: .01em; }
-  .stat b small { font-size: 16px; color: var(--ink-soft); font-weight: 700; }
-  .stat .lbl { font-size: 16px; font-weight: 700; margin-top: 4px; white-space: nowrap; }
-  .stat .sub { font-size: 14px; color: var(--ink-soft); white-space: nowrap; }
+  .stat b { white-space: nowrap; font-size: 46px; font-weight: 900; line-height: 1.1; color: var(--c); letter-spacing: .01em; }
+  .stat b small { font-size: 18px; color: var(--ink-soft); font-weight: 700; }
+  .stat .lbl { font-size: 19px; font-weight: 700; margin-top: 6px; white-space: nowrap; }
+  .stat .sub { font-size: 16px; color: var(--ink-soft); white-space: nowrap; }
   .stat .go { position: absolute; top: 12px; right: 14px; font-size: 14px; font-weight: 700; color: var(--c); opacity: .7; transition: transform .15s; }
   .stat:hover .go { transform: translateX(3px); opacity: 1; }
-  .stat:nth-child(2) { --c: #7a62d9; --t: #ece6ff; }
-  .stat:nth-child(3) { --c: #2aa884; --t: #ddf6ef; }
-  .stat:nth-child(4) { --c: #3c8fd0; --t: #dcecff; }
-
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stat { --t: #43303a; } :root:not([data-theme="light"]) .stat:nth-child(2) { --t: #2f2a4a; } :root:not([data-theme="light"]) .stat:nth-child(3) { --t: #213a37; } :root:not([data-theme="light"]) .stat:nth-child(4) { --t: #1f3047; } }
-  :root[data-theme="dark"] .stat { --t: #43303a; } :root[data-theme="dark"] .stat:nth-child(2) { --t: #2f2a4a; } :root[data-theme="dark"] .stat:nth-child(3) { --t: #213a37; } :root[data-theme="dark"] .stat:nth-child(4) { --t: #1f3047; }
+  .stat:nth-child(2) { --c: #7a62d9; }
+  .stat:nth-child(3) { --c: #2aa884; }
+  .stat:nth-child(4) { --c: #3c8fd0; }
 
   /* ---------- sections ---------- */
   section { padding: 56px 0; }
@@ -408,7 +401,7 @@
   }
 
   @media (max-width: 1120px) { .float.f2 { right: -3%; } }
-  @media (max-width: 350px) { h1 { font-size: 24px !important; } .nb { white-space: normal; } }
+  @media (max-width: 350px) { h1 { font-size: 24px !important; } .nb { white-space: normal; } .stat b { font-size: 32px !important; } .stat b small { font-size: 15px; } }
   @media (max-width: 860px) {
     h1 { font-size: clamp(28px, 7vw, 44px); }
     .hero-main { grid-template-columns: 1fr; }
@@ -436,10 +429,10 @@
     .nav-links { order: 5; width: 100%; margin-left: 0; justify-content: space-between; }
     .stats { gap: 12px; }
     .stat { padding: 16px 8px 14px; }
-    .stat b { font-size: 32px; }
-    .stat .lbl { font-size: 15px; }
-    .stat .sub { font-size: 13px; }
-    .stat .ico { width: 34px; height: 34px; font-size: 17px; }
+    .stat b { font-size: 38px; }
+    .stat .lbl { font-size: 17px; }
+    .stat .sub { font-size: 15px; }
+    .stat .go { display: none; }
     .course-head { grid-template-columns: 1fr; }
     .score { text-align: left; }
     .float { font-size: 11px; padding: 4px 8px; }
@@ -494,10 +487,10 @@
 
   <div class="wrap">
     <div class="stats">
-      <a class="stat" href="#courses" data-course="stats"><span class="go">→</span><span class="ico">📊</span><b>5.0<small> / 5.0</small></b><span class="lbl">統計專題班</span><span class="sub">學生評分</span></a>
-      <a class="stat" href="#courses" data-course="oop"><span class="go">→</span><span class="ico">☕</span><b>5.0<small> / 5.0</small></b><span class="lbl">物件導向專題班</span><span class="sub">學生評分</span></a>
-      <a class="stat" href="#online"><span class="go">→</span><span class="ico">💻</span><b>3</b><span class="lbl">Hahow</span><span class="sub">程式課程</span></a>
-      <a class="stat" href="#about"><span class="go">→</span><span class="ico">🌏</span><b>3</b><span class="lbl">國際研究機構</span><span class="sub">經歷</span></a>
+      <a class="stat" href="#courses" data-course="stats"><span class="go">→</span><b>5.0<small> / 5.0</small></b><span class="lbl">統計專題班</span><span class="sub">學生評分</span></a>
+      <a class="stat" href="#courses" data-course="oop"><span class="go">→</span><b>5.0<small> / 5.0</small></b><span class="lbl">物件導向專題班</span><span class="sub">學生評分</span></a>
+      <a class="stat" href="#online"><span class="go">→</span><b>3</b><span class="lbl">Hahow</span><span class="sub">程式課程</span></a>
+      <a class="stat" href="#about"><span class="go">→</span><b>3</b><span class="lbl">國際研究機構</span><span class="sub">合作研究</span></a>
     </div>
   </div>
 </header>
