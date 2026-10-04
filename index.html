@@ -260,19 +260,21 @@
   /* ---------- online & social ---------- */
   .online-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .ocard {
-    display: flex; flex-direction: column; gap: 10px; text-decoration: none;
+    display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden;
     background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius);
-    padding: 22px; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s;
+    box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s;
   }
+  .ocard .cover { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-bottom: 2px solid var(--border); }
+  .ocard .body { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px 20px; flex: 1; }
+  .ocard p { margin: 0; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
   .ocard:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
   .ocard .badge { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--mint-soft); }
-  .ocard .emoji { font-size: 34px; line-height: 1; }
-  .ocard h3 { margin: 0; font-size: 20px; }
+  .ocard h3 { margin: 0; font-size: 19px; line-height: 1.4; }
   .ocard .go { margin-top: auto; font-size: 14px; font-weight: 700; color: #7a62d9; }
   .ocard:nth-child(2) .badge { background: var(--pink-soft); }
   .ocard:nth-child(3) .badge { background: var(--lilac-soft); }
 
-  .social { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+  .social { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
   .scard {
     display: flex; align-items: center; gap: 16px; text-decoration: none;
     border: 2px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow);
@@ -281,6 +283,7 @@
   .scard:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
   .scard.ig { background: linear-gradient(135deg, #ffe3e8, #ffd9b8); }
   .scard.ss { background: linear-gradient(135deg, #ffe6cf, #ece6ff); }
+  .scard.ext { background: linear-gradient(135deg, #ddf6ef, #dcecff); }
   .scard svg { width: 44px; height: 44px; flex: none; }
   .scard b { display: block; font-size: 17px; }
   .scard span { font-size: 14px; }
@@ -452,26 +455,35 @@
 
   <section id="online">
     <div class="wrap">
-      <div class="sec-head reveal"><h2>線上課程與社群</h2><span class="mono">// learn_anytime()</span></div>
+      <div class="sec-head reveal"><h2>線上課程與作品</h2><span class="mono">// learn_anytime()</span></div>
 
       <div class="online-grid">
         <a class="ocard reveal" href="https://hahow.in/cr/ai-java-python" target="_blank" rel="noopener">
-          <span class="badge">Hahow 線上課程</span>
-          <span class="emoji">🤖</span>
-          <h3>AI × Java × Python</h3>
-          <span class="go">前往課程 →</span>
+          <img class="cover" src="assets/courses/ai-java-python.jpg" alt="修改 AI 程式碼 課程封面" loading="lazy" width="800" height="800">
+          <div class="body">
+            <span class="badge">Hahow · Python × Java</span>
+            <h3>修改 AI 程式碼</h3>
+            <p>生成、理解、除錯到驗證的開發實戰</p>
+            <span class="go">前往課程 →</span>
+          </div>
         </a>
         <a class="ocard reveal" href="https://hahow.in/cr/python-statistics" target="_blank" rel="noopener">
-          <span class="badge">Hahow 線上課程</span>
-          <span class="emoji">📊</span>
-          <h3>Python × 統計</h3>
-          <span class="go">前往課程 →</span>
+          <img class="cover" src="assets/courses/python-statistics.jpg" alt="Python × 統計 完整攻略 課程封面" loading="lazy" width="800" height="800">
+          <div class="body">
+            <span class="badge">Hahow · Python × 統計</span>
+            <h3>Python × 統計 完整攻略</h3>
+            <p>從機率基礎到真實資料分析的全面掌握</p>
+            <span class="go">前往課程 →</span>
+          </div>
         </a>
         <a class="ocard reveal" href="https://hahow.in/cr/rust-python" target="_blank" rel="noopener">
-          <span class="badge">Hahow 線上課程</span>
-          <span class="emoji">🦀</span>
-          <h3>Rust × Python</h3>
-          <span class="go">前往課程 →</span>
+          <img class="cover" src="assets/courses/rust-python.jpg" alt="Python × Rust 高效實戰開發 課程封面" loading="lazy" width="800" height="800">
+          <div class="body">
+            <span class="badge">Hahow · Python × Rust</span>
+            <h3>Python × Rust 高效實戰開發</h3>
+            <p>效能 × 安全 一次到位！</p>
+            <span class="go">前往課程 →</span>
+          </div>
         </a>
       </div>
 
@@ -483,6 +495,10 @@
         <a class="scard ss reveal" href="https://substack.com/@aihelp365" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="#2b3245" aria-hidden="true"><path d="M5 3h14v2.4H5zM5 7.3h14v2.4H5zM5 11.6h14V21l-7-3.9L5 21z"/></svg>
           <div><b>Substack</b><span class="mono">@aihelp365</span></div>
+        </a>
+        <a class="scard ext reveal" href="https://chromewebstore.google.com/detail/watchlaterhub/ijighpdloaokiflblkmmecapbmhhecbl" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2b3245" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5h8.2M8.97 13.75 4.9 6.6M15.03 13.75 11 20.9"/></svg>
+          <div><b>WatchLaterHub</b><span>Chrome 擴充功能</span></div>
         </a>
       </div>
     </div>
@@ -509,6 +525,7 @@
     <div class="footer-links">
       <a href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://substack.com/@aihelp365" target="_blank" rel="noopener">Substack</a>
+      <a href="https://chromewebstore.google.com/detail/watchlaterhub/ijighpdloaokiflblkmmecapbmhhecbl" target="_blank" rel="noopener">WatchLaterHub</a>
     </div>
     © <span id="year"></span> 麒仙老師 Salima
   </div>
