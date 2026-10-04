@@ -303,7 +303,14 @@
     background: var(--surface); box-shadow: 3px 3px 0 var(--border); color: var(--ink); font-weight: 700; text-decoration: none;
   }
   footer .mail .mono { display: inline; margin: 0; font-weight: 600; }
-  footer .mail:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--border); }
+  footer .mail { gap: 8px; }
+  .copy-btn {
+    font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; color: #2b3245; white-space: nowrap;
+    padding: 2px 12px; border-radius: 999px; border: 2px solid var(--border); background: var(--mint);
+    box-shadow: 2px 2px 0 var(--border);
+  }
+  .copy-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--border); }
+  .copy-btn.ok { background: #fff1c2; }
   .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-bottom: 8px; }
   .footer-links a { font-weight: 700; text-decoration: none; }
   .footer-links a:hover { text-decoration: underline; }
@@ -679,7 +686,7 @@
 <footer>
   <div class="wrap">
     <span class="mono">print("Thanks for visiting! 💖")</span>
-    <a class="mail" href="mailto:salimachchang@gmail.com">📧 聯絡信箱：<span class="mono">salimachchang@gmail.com</span></a>
+    <div class="mail">📧 聯絡信箱：<span class="mono" id="mailAddr">salimachchang@gmail.com</span><button type="button" class="copy-btn" id="copyMail" aria-label="複製信箱">📋 複製</button></div>
     <div class="footer-links">
       <a href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://substack.com/@aihelp365" target="_blank" rel="noopener">Substack</a>
@@ -816,6 +823,24 @@ subDialog.addEventListener("click", e => { if (e.target === subDialog) subDialog
 document.getElementById("subForm").addEventListener("submit", e => {
   // let the form post to Substack in a new tab, then show the thank-you state
   setTimeout(() => { subDialog.classList.add("done"); e.target.reset(); }, 0);
+});
+
+// copy contact email
+const copyBtn = document.getElementById("copyMail");
+copyBtn.addEventListener("click", async () => {
+  const text = document.getElementById("mailAddr").textContent.trim();
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand("copy"); } catch (e2) {}
+    ta.remove();
+  }
+  copyBtn.textContent = ok ? "✅ 已複製" : "請手動複製";
+  copyBtn.classList.toggle("ok", ok);
+  clearTimeout(copyBtn._t);
+  copyBtn._t = setTimeout(() => { copyBtn.textContent = "📋 複製"; copyBtn.classList.remove("ok"); }, 1800);
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
