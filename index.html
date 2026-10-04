@@ -293,7 +293,7 @@
   .ocard:nth-child(2) .badge { background: var(--pink-soft); }
   .ocard:nth-child(3) .badge { background: var(--lilac-soft); }
 
-  .social { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .social { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 22px; }
   .scard {
     display: flex; align-items: center; gap: 16px; text-decoration: none;
     border: 2px solid var(--border); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow);
@@ -302,11 +302,12 @@
   .scard:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--border); }
   .scard.ig { background: linear-gradient(135deg, #ffe3e8, #ffd9b8); }
   .scard.ss { background: linear-gradient(135deg, #ffe6cf, #ece6ff); }
+  .scard.yt { background: linear-gradient(135deg, #ffe0e0, #fff1c2); }
   .scard.ext { background: linear-gradient(135deg, #ddf6ef, #dcecff); }
   .scard svg, .scard img { width: 44px; height: 44px; flex: none; }
   .scard b { display: block; font-size: 17px; }
   .scard span { font-size: 14px; }
-  .footer-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; }
+  .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-bottom: 8px; }
   .footer-links a { font-weight: 700; text-decoration: none; }
   .footer-links a:hover { text-decoration: underline; }
 
@@ -541,46 +542,6 @@
     </div>
   </section>
 
-  <section id="honors">
-    <div class="wrap">
-      <div class="sec-head reveal"><h2>榮譽與服務</h2><span class="mono">// achievements.sort(by="year")</span></div>
-      <div class="honors">
-        <div class="panel reveal">
-          <h3><span class="icon" style="background:#ffd25e">🏆</span>獲獎紀錄</h3>
-          <ul class="h-list">
-            <li class="star"><span class="yr">2024</span><span>獲臺大推薦角逐 <b>Google PhD Fellowship</b>（Google 博士生獎學金）</span></li>
-            <li class="star"><span class="yr">2023</span><span>臺大 <b>大專優秀青年獎</b></span></li>
-            <li><span class="yr">2023</span><span>臺大電機資訊學院 <b>學生利他獎</b></span></li>
-            <li class="star"><span class="yr">2022</span><span><b>全國夏季學院傑出教學助理獎</b></span></li>
-            <li><span class="yr">2022</span><span>臺大《專業英文書寫與口語溝通》團隊專題 <b>第一名</b><small>（擔任組長）</small></span></li>
-            <li><span class="yr">2022</span><span>臺大《醫學與電資創新整合專題》團隊專題 <b>第一名</b></span></li>
-            <li><span class="yr">2018</span><span>臺大統計碩士學位學程 <b>畢業典禮致詞代表</b></span></li>
-            <li><span class="yr">2018</span><span>獲選臺科大 <b>U-stat 計畫</b></span></li>
-            <li class="star"><span class="yr">2017</span><span>第二屆 <b>尤努斯獎</b> 社會創新與創業競賽 <b>第一名</b></span></li>
-            <li><span class="yr">2016</span><span>擔任伊斯蘭文化研究社社長，獲 <b>社團評鑑優等獎</b></span></li>
-          </ul>
-        </div>
-        <div class="stack">
-          <div class="panel reveal">
-            <h3><span class="icon" style="background:var(--lilac)">📜</span>專業認證</h3>
-            <ul class="h-list">
-            <li><span class="yr">2023</span><span>臺大 <b>ISW 國際教學技巧工作坊認證</b><small>（Instructional Skills Workshop）</small></span></li>
-            <li><span class="yr">2023</span><span>臺大 <b>EMI 全英語授課教學助理認證</b><small>（English as a Medium of Instruction）</small></span></li>
-            </ul>
-          </div>
-          <div class="panel reveal">
-            <h3><span class="icon" style="background:var(--sky)">🔎</span>學術服務與領導</h3>
-            <ul class="h-list">
-            <li><span class="yr">2026</span><span><b>IEEE TEVC</b> 期刊審稿人<small>（IEEE Transactions on Evolutionary Computation）</small></span></li>
-            <li><span class="yr">2024</span><span><b>ACML</b> 亞洲機器學習會議審稿人<small>（Asian Conference on Machine Learning）</small></span></li>
-            <li><span class="yr">2024</span><span><b>MIT 台灣學生會（ROCSA）</b>副會長</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="courses">
     <div class="wrap">
       <div class="sec-head reveal"><h2>課程與學生評價</h2><span class="mono">// reviews.filter(r =&gt; r.love)</span></div>
@@ -649,6 +610,10 @@
           <svg viewBox="0 0 24 24" fill="#2b3245" aria-hidden="true"><path d="M5 3h14v2.4H5zM5 7.3h14v2.4H5zM5 11.6h14V21l-7-3.9L5 21z"/></svg>
           <div><b>Substack</b><span class="mono">@aihelp365</span></div>
         </a>
+        <a class="scard yt reveal" href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="#2b3245" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="#2b3245"/></svg>
+          <div><b>YouTube</b><span>@AI幫幫忙</span></div>
+        </a>
         <a class="scard ext reveal" href="https://chromewebstore.google.com/detail/watchlaterhub/ijighpdloaokiflblkmmecapbmhhecbl" target="_blank" rel="noopener">
           <img src="assets/watchlaterhub.svg" alt="" width="44" height="44">
           <div><b>WatchLaterHub</b><span>Chrome 擴充功能</span></div>
@@ -686,6 +651,45 @@
       </div>
     </div>
   </section>
+  <section id="honors">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>榮譽與服務</h2><span class="mono">// achievements.sort(by="year")</span></div>
+      <div class="honors">
+        <div class="panel reveal">
+          <h3><span class="icon" style="background:#ffd25e">🏆</span>獲獎紀錄</h3>
+          <ul class="h-list">
+            <li class="star"><span class="yr">2024</span><span>獲臺大推薦角逐 <b>Google PhD Fellowship</b>（Google 博士生獎學金）</span></li>
+            <li class="star"><span class="yr">2023</span><span>臺大 <b>大專優秀青年獎</b></span></li>
+            <li><span class="yr">2023</span><span>臺大電機資訊學院 <b>學生利他獎</b></span></li>
+            <li class="star"><span class="yr">2022</span><span><b>全國夏季學院傑出教學助理獎</b></span></li>
+            <li><span class="yr">2022</span><span>臺大《專業英文書寫與口語溝通》團隊專題 <b>第一名</b><small>（擔任組長）</small></span></li>
+            <li><span class="yr">2022</span><span>臺大《醫學與電資創新整合專題》團隊專題 <b>第一名</b></span></li>
+            <li><span class="yr">2018</span><span>臺大統計碩士學位學程 <b>畢業典禮致詞代表</b></span></li>
+            <li><span class="yr">2018</span><span>獲選臺科大 <b>U-stat 計畫</b></span></li>
+            <li class="star"><span class="yr">2017</span><span>第二屆 <b>尤努斯獎</b> 社會創新與創業競賽 <b>第一名</b></span></li>
+            <li><span class="yr">2016</span><span>擔任伊斯蘭文化研究社社長，獲 <b>社團評鑑優等獎</b></span></li>
+          </ul>
+        </div>
+        <div class="stack">
+          <div class="panel reveal">
+            <h3><span class="icon" style="background:var(--lilac)">📜</span>專業認證</h3>
+            <ul class="h-list">
+            <li><span class="yr">2023</span><span>臺大 <b>ISW 國際教學技巧工作坊認證</b><small>（Instructional Skills Workshop）</small></span></li>
+            <li><span class="yr">2023</span><span>臺大 <b>EMI 全英語授課教學助理認證</b><small>（English as a Medium of Instruction）</small></span></li>
+            </ul>
+          </div>
+          <div class="panel reveal">
+            <h3><span class="icon" style="background:var(--sky)">🔎</span>學術服務與領導</h3>
+            <ul class="h-list">
+            <li><span class="yr">2026</span><span><b>IEEE TEVC</b> 期刊審稿人<small>（IEEE Transactions on Evolutionary Computation）</small></span></li>
+            <li><span class="yr">2024</span><span><b>ACML</b> 亞洲機器學習會議審稿人<small>（Asian Conference on Machine Learning）</small></span></li>
+            <li><span class="yr">2024</span><span><b>MIT 台灣學生會（ROCSA）</b>副會長</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <dialog class="sub" id="subDialog" aria-labelledby="subTitle">
@@ -716,6 +720,7 @@
     <div class="footer-links">
       <a href="https://www.instagram.com/ai.help.365/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://substack.com/@aihelp365" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.youtube.com/@AI%E5%B9%AB%E5%B9%AB%E5%BF%99" target="_blank" rel="noopener">YouTube</a>
       <a href="https://chromewebstore.google.com/detail/watchlaterhub/ijighpdloaokiflblkmmecapbmhhecbl" target="_blank" rel="noopener">WatchLaterHub</a>
     </div>
     © <span id="year"></span> 麒仙老師 Salima
